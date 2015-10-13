@@ -1,0 +1,72 @@
+// Import Fonts
+@import url(https://fonts.googleapis.com/css?family=Poiret+One|Luckiest+Guy);
+
+// Transform vars
+$x_rotation: 55deg;
+$z_rotation: -20deg;
+$spread: 6px;
+
+.logo {
+    width:230px;
+    font:2.5em 'Poiret One', sans-serif;
+    color:#555;
+    cursor:pointer;
+    text-align:center;
+    overflow:hidden;
+    white-space:nowrap;
+    transition:all 500ms;
+    -webkit-transition:all 500ms;
+    
+    // Z Styling
+    .da-z {
+      position:relative;
+      display:inline-block;
+      width:28px;
+      height:50px;
+      margin-bottom:-8.5px;
+
+      em {
+        position:absolute;
+        font:1.2em 'Luckiest Guy', sans-serif;
+        font-style:normal;
+        bottom:0;
+        left:2px;
+        opacity:0.85;
+        transition:all 500ms;
+        -webkit-transition:all 500ms;
+
+        &.z-1 { 
+          color:#bdc3c7;
+          transform: rotateX($x_rotation) translateZ(-3 * $spread) rotateZ($z_rotation); 
+        }
+
+        &.z-2 {
+          color:#3498db;
+          transform: rotateX($x_rotation) translateZ(-2 * $spread) translateX(2.5px) rotateZ($z_rotation); 
+        }
+
+        &.z-3 {
+          color:#e67e22;
+          transform: rotateX($x_rotation) translateZ(-1 * $spread) translateX(5px) rotateZ($z_rotation); 
+        }
+      }
+      
+    }
+    
+    // Hover Behavior
+    &:hover {
+      color: #777;
+
+      em.z-1, em.z-3 { 
+          color:#bdc3c7;
+        //color:#3498db;
+        opacity:0.5;
+        transform: rotateX($x_rotation) translateZ(-2 * $spread) translateX(0) rotateZ(0); 
+      }
+      
+      em.z-2 {
+        //transition-delay:500ms;
+        transform: rotateX($x_rotation) translateZ(-2 * $spread) translateX(0) rotateZ(0);
+      }
+    }
+  }
