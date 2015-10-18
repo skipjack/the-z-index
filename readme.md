@@ -1,5 +1,5 @@
-# Cactus Example Blog
+# The Z Index
 
-This is an example blog project for [Cactus](https://github.com/koenbok/Cactus). It provides a starting point for your own blog. Just download it, make sure you have [Cactus](https://github.com/koenbok/Cactus) installed and run `cactus serve`.
+This is the beginning a blog project created by Satish Tummula and Greg Venech.
 
-You can see it running [here](http://cactus-example-blog.s3-website-us-east-1.amazonaws.com/).
+Stay tuned for more...
