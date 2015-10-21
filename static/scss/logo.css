@@ -1,12 +1,11 @@
 @import url(https://fonts.googleapis.com/css?family=Poiret+One|Luckiest+Guy);
 .logo {
+  display: inline-block;
   width: 230px;
+  padding-bottom: 2px;
   font: 2.5em 'Poiret One', sans-serif;
-  color: #555;
-  cursor: pointer;
-  text-align: center;
   overflow: hidden;
-  white-space: nowrap;
+  color: #555;
   transition: all 500ms;
   -webkit-transition: all 500ms; }
   .logo .da-z {
@@ -26,20 +25,25 @@
       -webkit-transition: all 500ms; }
       .logo .da-z em.z-1 {
         color: #bdc3c7;
-        transform: rotateX(55deg) translateZ(-18px) rotateZ(-20deg); }
+        transform: rotateX(55deg) translateZ(-18px) rotateZ(-20deg);
+        -webkit-transform: rotateX(55deg) translateZ(-18px) rotateZ(-20deg); }
       .logo .da-z em.z-2 {
         color: #3498db;
-        transform: rotateX(55deg) translateZ(-12px) translateX(2.5px) rotateZ(-20deg); }
+        transform: rotateX(55deg) translateZ(-12px) translateX(2.5px) rotateZ(-20deg);
+        -webkit-transform: rotateX(55deg) translateZ(-12px) translateX(2.5px) rotateZ(-20deg); }
       .logo .da-z em.z-3 {
         color: #e67e22;
-        transform: rotateX(55deg) translateZ(-6px) translateX(5px) rotateZ(-20deg); }
+        transform: rotateX(55deg) translateZ(-6px) translateX(5px) rotateZ(-20deg);
+        -webkit-transform: rotateX(55deg) translateZ(-6px) translateX(5px) rotateZ(-20deg); }
   .logo:hover {
     color: #777; }
     .logo:hover em.z-1, .logo:hover em.z-3 {
       color: #bdc3c7;
-      opacity: 0.5;
-      transform: rotateX(55deg) translateZ(-12px) translateX(0) rotateZ(0); }
+      opacity: 0.1;
+      transform: rotateX(55deg) translateZ(-12px) translateX(0) rotateZ(0);
+      -webkit-transform: rotateX(55deg) translateZ(-12px) translateX(0) rotateZ(0); }
     .logo:hover em.z-2 {
-      transform: rotateX(55deg) translateZ(-12px) translateX(0) rotateZ(0); }
+      transform: rotateX(55deg) translateZ(-12px) translateX(0) rotateZ(0) scale(1.1);
+      -webkit-transform: rotateX(55deg) translateZ(-12px) translateX(0) rotateZ(0) scale(1.1); }
 
 /*# sourceMappingURL=logo.css.map */
