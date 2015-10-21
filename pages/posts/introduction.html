@@ -1,0 +1,28 @@
+title: Introduction
+author: Greg Venech
+date: 28-10-2015
+headline: What we're about...
+
+{% extends "post.html" %}
+{% block body %}
+
+{% filter markdown %}
+
+In today's web development world, there are a vast number of tools to choose from when creating a project. Pick too many and you risk creating a bloated app/site. Pick too few and you end up reinventing the wheel at every turn. Finding the right balance can be hard, especially under the time constraints many of us face. It is my hope that this site will alleviate at least some of that pain.
+
+First some background. Satish and I, Greg, are both avid developers with an shared interest in tinkering around on the web. We hope to accomplish a few things with this site: First, we'd like to pass on some of the knowledge we've picked up building data-driven web applications and other web projects. I'm sure most of you have heard the following [quote](https://dzone.com/articles/you-never-really-learn) or something similar...
+
+ > You never really learn something until you teach it. 
+
+I can't count the number of times I've gone to explain a tool or process I use everyday and realize halfway through the first sentence that I'm clueless as to the why it works the way it does. So not only are we trying to share the techniques we've picked up, but are confident that writing each post will give *us* a deeper understanding the topic at hand. 
+
+Secondly, remember... this is a list, we will do our best to provide real world examples and scenarios. This is not to say that we won't use [mock data](http://www.json-generator.com/) at times but some context, rather than just lorem ipsum type content, can definitely enrich the learning process. Each post [shall](http://www.ietf.org/rfc/rfc2119.txt) be accompanied with a means to deconstruct the component under discussion. For example, anything to do with HTML, CSS, and JS will be accompanied by a [pen](http://codepen.io/). If it's re a design, the PSD and any other (accompanying files)[https://forums.adobe.com/thread/370303?start=0&tstart=0]. You get the point... Finally we (?) also have some grandiose plans to integrate many of the things we discuss into a funky, feature-rich web application. This is most definitely **NOT** to encourage [feature bloat](http://itlaw.wikia.com/wiki/Feature_bloat) in your applications, but, as mentioned, to provide a real world context for the things we discuss.
+
+Also, these days, it seems like almost a [sin](http://simpleprogrammer.com/2013/12/23/marketing-need-blog/) not to blog ;)
+
+![Scripture Image]({% static '/images/scripture.jpg' %} 'Scripture we are not...')
+
+At the end of the day, I really can't say for sure what this site will or won't be. Don't take anything we say as scripture and feel free to fact-check us when necessary. We're just two more [guys](http://www.nytimes.com/2015/10/11/opinion/sunday/what-really-keeps-women-out-of-tech.html?_r=0) staring at the debugger everyday, trying to figure out what the hell is wrong with our code... 
+
+{% endfilter %}
+{% endblock body %}
