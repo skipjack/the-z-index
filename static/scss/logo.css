@@ -5,7 +5,7 @@
   padding-bottom: 2px;
   font: 2.5em 'Poiret One', sans-serif;
   overflow: hidden;
-  color: #555;
+  color: #666;
   transition: all 500ms;
   -webkit-transition: all 500ms; }
   .logo .da-z {
@@ -36,7 +36,7 @@
         transform: rotateX(55deg) translateZ(-6px) translateX(5px) rotateZ(-20deg);
         -webkit-transform: rotateX(55deg) translateZ(-6px) translateX(5px) rotateZ(-20deg); }
   .logo:hover {
-    color: #777; }
+    color: #333; }
     .logo:hover em.z-1, .logo:hover em.z-3 {
       color: #bdc3c7;
       opacity: 0.1;
