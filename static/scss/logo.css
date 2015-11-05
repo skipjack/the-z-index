@@ -7,7 +7,9 @@
   overflow: hidden;
   color: #666;
   transition: all 500ms;
-  -webkit-transition: all 500ms; }
+  -webkit-transition: all 500ms;
+  user-select: none;
+  -webkit-user-select: none; }
   .logo .da-z {
     position: relative;
     display: inline-block;
@@ -37,12 +39,9 @@
         -webkit-transform: rotateX(55deg) translateZ(-6px) translateX(5px) rotateZ(-20deg); }
   .logo:hover {
     color: #333; }
-    .logo:hover em.z-1, .logo:hover em.z-3 {
+    .logo:hover em.z-1, .logo:hover em.z-2, .logo:hover em.z-3 {
       color: #bdc3c7;
-      opacity: 0.1;
-      transform: rotateX(55deg) translateZ(-12px) translateX(0) rotateZ(0);
-      -webkit-transform: rotateX(55deg) translateZ(-12px) translateX(0) rotateZ(0); }
-    .logo:hover em.z-2 {
+      opacity: 0.5;
       transform: rotateX(55deg) translateZ(-12px) translateX(0) rotateZ(0) scale(1.1);
       -webkit-transform: rotateX(55deg) translateZ(-12px) translateX(0) rotateZ(0) scale(1.1); }
 

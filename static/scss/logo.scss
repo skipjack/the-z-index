@@ -15,6 +15,8 @@ $spread: 6px;
   color:#666;
   transition:all 500ms;
   -webkit-transition:all 500ms;
+  user-select:none;
+  -webkit-user-select:none;
   
   // Z Styling
   .da-z {
@@ -58,14 +60,9 @@ $spread: 6px;
   &:hover {
     color: #333;
 
-    em.z-1, em.z-3 { 
-      color:#bdc3c7;
-      opacity:0.1;
-      transform: rotateX($x_rotation) translateZ(-2 * $spread) translateX(0) rotateZ(0);// scale(1.4); 
-      -webkit-transform: rotateX($x_rotation) translateZ(-2 * $spread) translateX(0) rotateZ(0);// scale(1.2); 
-    }
-    
-    em.z-2 {
+    em.z-1, em.z-2, em.z-3 { 
+      color:#bdc3c7;//#e67e22;
+      opacity:0.5;
       transform: rotateX($x_rotation) translateZ(-2 * $spread) translateX(0) rotateZ(0) scale(1.1);
       -webkit-transform: rotateX($x_rotation) translateZ(-2 * $spread) translateX(0) rotateZ(0) scale(1.1);
     }
