@@ -1,0 +1,21 @@
+// Border hack
+
+#header {
+	position:relative;
+
+	&:before, &:after {
+	    content: '';
+	    position: absolute;
+	    width: 1000px;
+	    border-bottom: 1px solid #eee;
+	    bottom: -1px;
+	}
+
+	&:before { right:0; }
+	&:after { left:0; }
+}
+
+#wrapper {
+	height:100%;
+	border-left:1px solid #eee;
+}
