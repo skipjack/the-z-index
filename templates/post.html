@@ -39,7 +39,6 @@
 				      'width=626,height=436'); 
 				    return false;"><span class="icon-facebook-circled"></span> 
 				</a>
-
 			</section> 
 		</footer> 
 	</article>
@@ -64,6 +63,28 @@
 		</span>
 	</nav>
 	</footer>
+
+	<div id="disqus_thread"></div>
+	<script>
+		
+		var disqus_config = function () {
+			this.page.title = '{{ title }}';
+			this.page.url = window.location.href; 
+			this.page.identifier = '{{ title }}'.replace(' ', '-'); 
+		};
+		
+		(function() { 
+			var d = document, s = d.createElement('script');
+
+			s.src = '//thezindex.disqus.com/embed.js';
+
+			s.setAttribute('data-timestamp', +new Date());
+			(d.head || d.body).appendChild(s);
+		})();
+
+	</script>
+
+	<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 </section> 
 
 {% endblock content %}
