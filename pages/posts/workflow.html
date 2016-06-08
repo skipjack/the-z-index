@@ -1,0 +1,126 @@
+title: A Suitable Workflow
+headline: Webpack, NPM, and ES6
+author: Greg Venech
+date: 16-5-2016
+
+{% extends "post.html" %}
+{% block body %}
+
+{% filter markdown %}
+
+One of the hardest things to figure out when starting a project is choosing a [build tool][1]. You want something that, in the end, helps with debugging, formatting, testing, and deploying. For small projects, say a little one pager or chart, a build process might not make sense. It should *save more time* than it takes to set up. When working on larger projects (a complex web app or site), a build tool can be almost a necessity and hopefully a good friend. There are a lot of options out there, like [Gulp][20], [Grunt][21], or [Broccoli][22], but my most recent companion, and what seems like a new [favorite][2] [throughout][3] [much][4] of the [community][5], is [Webpack][6].
+
+Let's now go through setting up a Webpack project. There's an accompanying [github repo][7] if you'd like to skip straight to the code. For brevity, I'm going to skip explaining how to set up the `/dist` directory as it only contains an `index.html` and favicon.
+
+---
+### Creating a Project
+
+Webpack is an [NPM][8] package so setting it up is fairly easy if you're already familiar with [Node][8]. For those who aren't, I would definitely start [doing][10] [some][11] [research][12] as NPM is quickly becoming, if not already, the go to package manager for most JavaScript projects both client and server-side (replacing other managers such as [bower][13]). Surprisingly, using NPM requires very little knowledge of Node and isn't very hard to start working with:
+
+    npm init
+    ...
+    npm install webpack webpack-dev-server --save-dev
+
+Now we have a package with webpack and it's dev-server installed and [saved][14]. One thing to keep in mind here is that even though we've created a Node package, *it does not have to be a server-side project or be published publicly*. For front-end development, you can simply use NPM as a way to manage dependencies:
+
+    devDependencies: {
+    	// Development/Build packages such as webpack (use --save-dev)
+    },
+
+    dependencies: {
+    	// Packages used in your application (use --save) 
+    }
+
+This makes it easy to keep track of which are actually needed for the project to run and those only used for building it. With that said, I would still read through NPM's documentation on the [various kinds of dependencies][15] and how they work.
+
+---
+### Configuring Webpack
+
+In a nutshell, Webpack enters your application through one or more `entry` files and the rest of your code is then `import`ed or `require`d. These `import`ed files can be anything from libraries that you've `npm install`ed to custom JavaScript modules, stylesheets, images, json and pretty much anything else. Let's add the entry points:
+
+    context: Path.resolve('./src'),
+    entry: {
+        index: './app.js'
+    }
+
+We've determined how Webpack will start bundling, or *enter*, the application. But, we haven't told it where to `output` the generated bundles:
+
+    output: {
+		filename: '[name].bundle.js',
+		path: '/dist/build',
+		publicPath: '/build/'
+	}
+
+---
+### Loaders and Plugins
+
+Now that we have our `entry` and `output` sections, we need to tell Webpack how to *load* the various filetypes used in our project. One really cool feature of Webpack is that you can `import` all types of assets aside from just HTML, CSS, and JavaScript. In this case we'll set up loaders for `.js`, `.css`, and `.woff` files:
+
+	module: {
+		loaders: [
+			{ test: /\.woff2?$/, loader: 'file' },
+			{ test: /\.js$/, exclude: /node_modules/, loader: 'babel' },
+			{ test: /\.css$/, loader: 'style!css' }
+		]
+	}
+
+Webpack will use the `test` regexes to, as you might imagine, *test* `import`ed filepaths to figure out which loader to use. We're using the `exclude` field in the JavaScript loader so that we don't transpile our `node_modules` which are already in ES5. Lastly, the `loader` field specifies which loader or loaders (delimited with an '!') to use. 
+
+An important thing to know here is loaders are executed from *right to left*. For example, our `.css` files will go through the `css-loader` first and that loader's output will be passed to the `style-loader`. You can find a list of loaders [here][16]. Note that these loaders are also npm packages that must be `npm install`ed.
+
+Certain loaders need settings. These can be passed via the `query` field, a separate object in the config, or just by adding their `.*rc` file to the root directory as I have done here with Babel. This is out of the scope of this post but you can find info on the `.babelrc` [here][17].
+
+---
+### Dev Server
+
+The last thing we'll do is to set up the [webpack-dev-server][18]. This means a great environment for developing and debugging our app. We'll tell it which `port` to use, turn on gzipping via `compress`, and point it to our output directory with `contentBase`. The `inline` field controls whether or not a notification bar is shown at the top of the app. Personally, I like to turn it off because it causes the app your debugging to be rendered inside an iframe...
+
+	devServer: {
+		port: 8080,
+		inline: true,
+		compress: true,
+		contentBase: 'dist/'
+	}
+
+---
+### Build Scripts
+
+So now that we have `webpack` and `webpack-dev-server` set up via the `webpack.config.js`, we just need a way to start the dev-server and run builds. While we could install both globally, it's better practice to install these locally, as we did above, and use [npm scripts][19] to trigger them. This allows us to run a specific version of Webpack per project instead of having a single globally installed package locking us to one version. Configuring the scripts is a breeeze using `scripts` in our `package.json`:
+
+	"scripts": {
+		"build": "webpack -p",
+		"dev-server": "webpack-dev-server"
+	}
+
+Now we can use `npm run build` to populate the `dist/build` directory with our bundles and assets or `npm run dev-server` to start the `webpack-dev-server` and work on our app.
+
+--- 
+### Conclusion
+
+This post is just touching the surface of what you can achieve by using Webpack. At this point you should have a general idea of how Webpack works and a running start on your first project. Feel free to fork the [repo][7] and use it as a base. I'm working on some variations of this repo, also accompanied by posts, which will introduce other Webpack concepts and tools such as creating child bundles/chunks, using plugins, and Hot Module Replacement.
+
+[1]: http://stackoverflow.com/questions/7249871/what-is-a-build-tool
+[2]: https://blog.madewithlove.be/post/webpack-your-bags/
+[3]: https://github.com/petehunt/webpack-howto
+[4]: http://survivejs.com/webpack/webpack-compared/
+[5]: https://blog.serverdensity.com/the-journey-to-webpack/
+[6]: http://webpack.github.io/
+[7]: https://github.com/gregvenech/webpack-boilerplate
+[8]: https://www.npmjs.com/
+[9]: https://nodejs.org/en/
+[10]: https://docs.npmjs.com/cli/init
+[11]: http://weaintplastic.github.io/web-development-field-guide/Development/Frontend_Development/Setting_up_your_project/Setup_Dependency_Managers/Node_Package_Manager/Initialize_NPM_on_a_new_project.html
+[12]: https://www.sitepoint.com/beginners-guide-node-package-manager/
+[13]: http://bower.io/
+[14]: http://stackoverflow.com/questions/22891211/what-is-difference-between-save-and-save-dev
+[15]: http://stackoverflow.com/questions/18875674/whats-the-difference-between-dependencies-devdependencies-and-peerdependencies
+[16]: http://webpack.github.io/docs/list-of-loaders.html
+[17]: http://babeljs.io/docs/usage/babelrc/
+[18]: https://webpack.github.io/docs/webpack-dev-server.html
+[19]: https://docs.npmjs.com/misc/scripts
+[20]: http://gulpjs.com/
+[21]: http://gruntjs.com/
+[22]: http://broccolijs.com/
+
+{% endfilter %}
+{% endblock body %}
